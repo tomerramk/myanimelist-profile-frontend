@@ -25,7 +25,8 @@
 			"@/*": ["/src/*"],
 			"@components/*": ["src/components/*"],
 			"@entities/*": ["src/entities/*"],
-			"@features/*": ["src/features/*"]
+			"@features/*": ["src/features/*"],
+			"@hooks/*": ["src/hooks/*"],
 		}
 	},
 	"include": ["src"],
