@@ -1,26 +1,6 @@
 import { create } from "zustand";
 
-export interface ListDataProps {
-	data: {
-		node: {
-			id: number;
-			title: string;
-			main_picture: {
-				medium: string;
-				large: string;
-			};
-		};
-		list_status: {
-			status: string;
-			score: number;
-			num_episodes_watched: number;
-			is_rewatching: boolean;
-			updated_at: string;
-			finish_date: string;
-		};
-	}[];
-	paging: {};
-}
+import type AnimeCard from "@entities/AnimeCard";
 
 type AnimeDataProps = {
 	data: {
@@ -113,10 +93,10 @@ type StatusDetails = {
 	};
 };
 
-interface AnimeListProps {
-	listData: ListDataProps;
+interface AnimeListStoreProps {
+	animeList: AnimeCard[];
 
-	setListData: (listData: ListDataProps) => void;
+	setAnimeList: (animeList: AnimeCard[]) => void;
 
 	animeData: AnimeDataProps;
 
@@ -137,13 +117,10 @@ interface AnimeListProps {
 	) => StatusDetails[keyof StatusDetails] | undefined;
 }
 
-const useAnimeListStore = create<AnimeListProps>((set, get) => ({
-	listData: {
-		data: [],
-		paging: {},
-	},
+const useAnimeListStore = create<AnimeListStoreProps>((set, get) => ({
+	animeList: [],
 
-	setListData: (list) => set({ listData: list }),
+	setAnimeList: (list) => set({ animeList: list }),
 
 	animeData: <AnimeDataProps>{
 		data: {},

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import axios from "axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -16,7 +17,7 @@ const fetchAnimeList = async ({ pageParam = 1 }) => {
 };
 
 const UserAnimeList: React.FC = () => {
-	const { animeTab } = useAnimeListStore();
+	const { animeTab, setAnimeList } = useAnimeListStore();
 
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
 		useInfiniteQuery({
@@ -31,7 +32,9 @@ const UserAnimeList: React.FC = () => {
 	const fetchedAnimeCount =
 		data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;
 
-	const allAnime = data?.pages.flatMap((page) => page.data) || [];
+	useEffect(() => {
+		setAnimeList(data?.pages.flatMap((page) => page.data) || []);
+	}, [data, setAnimeList]);
 
 	return (
 		<div className="flex h-full flex-col">
@@ -48,7 +51,7 @@ const UserAnimeList: React.FC = () => {
 					) : null
 				}
 			>
-				<AnimeList anime={allAnime} />
+				<AnimeList />
 			</InfiniteScroll>
 		</div>
 	);
