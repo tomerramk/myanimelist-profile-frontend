@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Cross1Icon } from "@radix-ui/react-icons";
+
+import AnimePicturesGrid from "./AnimePicture";
 import useAnimeListStore from "@features/anime-list/useAnimeListStore";
+import AnimePictures from "@entities/AnimePictures";
 
 type AnimeSlideOverProps = {
 	isOpen: boolean;
@@ -12,7 +15,9 @@ type AnimeSlideOverProps = {
 
 const AnimeSlideOver = ({ isOpen, onClose, animeId }: AnimeSlideOverProps) => {
 	const { animeData, setAnimeData } = useAnimeListStore();
+	const [animePictures, setAnimePictures] = useState<AnimePictures[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [showPopup, setShowPopup] = useState(false);
 
 	useEffect(() => {
 		if (animeId) {
@@ -26,10 +31,20 @@ const AnimeSlideOver = ({ isOpen, onClose, animeId }: AnimeSlideOverProps) => {
 				.catch((error) => {
 					console.error(error);
 				});
+			axios
+				.get(`http://localhost:8080/api/anime/pictures/${animeId}`)
+				.then((response) => {
+					setAnimePictures(response.data.data);
+					console.log(response.data);
+					setIsLoading(false);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
 		}
 	}, [animeId, setAnimeData]);
 
-	if (!isOpen || !animeData.data) return null;
+	if (!isOpen || !animeData || !animePictures) return null;
 
 	const { title, episodes, score, synopsis, images } = animeData.data;
 
@@ -55,12 +70,20 @@ const AnimeSlideOver = ({ isOpen, onClose, animeId }: AnimeSlideOverProps) => {
 									</div>
 								</div>
 							</header>
-							<div className="p-4">
-								<img
-									className="mb-2 max-h-96 rounded-sm shadow-lg"
-									src={images?.jpg.large_image_url}
-									alt={title}
-								/>
+							<div className="space-x-4 p-4">
+								<div className="flex h-fit w-fit flex-row ">
+									<img
+										className="mb-2 mr-4 flex-none rounded-sm shadow-lg"
+										src={images?.jpg.large_image_url}
+										alt={title}
+									/>
+									<AnimePicturesGrid
+										animePictures={animePictures}
+										showPopup={showPopup}
+										setShowPopup={setShowPopup}
+									/>
+								</div>
+
 								<div className="space-y-2">
 									<p>
 										<strong>Score:</strong> {score}

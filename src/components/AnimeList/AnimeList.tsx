@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import AnimeCardComponent from "./AnimeCard";
-import AnimeSlideOver from "./AnimeSlideOver";
+import AnimeSlideOver from "./AnimeSlideOver/AnimeSlideOver";
 
 import type AnimeCard from "@entities/AnimeCard";
 
