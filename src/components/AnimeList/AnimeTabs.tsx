@@ -5,12 +5,14 @@ import FilterAnime from "./FilterAnime";
 
 import useAnimeListStore from "@features/anime-list/useAnimeListStore";
 
+import useAnimeList from "@hooks/useAnimeList";
+
 type tabProps = {
 	selectedStatus: string;
 };
 
 const AnimeTabs = ({ selectedStatus }: tabProps) => {
-	const { setAnimeTab, getStatusDetails } = useAnimeListStore();
+	const { animeTab, setAnimeTab, getStatusDetails } = useAnimeListStore();
 	const [searchOpen, setSearchOpen] = useState(false);
 	const statusDetails = getStatusDetails(selectedStatus);
 
@@ -22,6 +24,8 @@ const AnimeTabs = ({ selectedStatus }: tabProps) => {
 		{ key: "dropped", label: "Dropped" },
 		{ key: "plan_to_watch", label: "Plan to Watch" },
 	];
+
+	useAnimeList(animeTab);
 
 	return (
 		<div className="ml-4 flex w-[calc(100%-2rem)] items-center justify-center rounded bg-content-50 p-2">
