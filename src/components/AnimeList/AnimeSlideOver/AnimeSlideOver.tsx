@@ -25,7 +25,7 @@ const AnimeSlideOver = ({ isOpen, onClose, animeId }: AnimeSlideOverProps) => {
 			axios
 				.get(`http://localhost:8080/api/anime/${animeId}`)
 				.then((response) => {
-					setAnimeData(response.data);
+					setAnimeData(response.data.data);
 					setIsLoading(false);
 				})
 				.catch((error) => {
@@ -46,7 +46,7 @@ const AnimeSlideOver = ({ isOpen, onClose, animeId }: AnimeSlideOverProps) => {
 
 	if (!isOpen || !animeData || !animePictures) return null;
 
-	const { title, episodes, score, synopsis, images } = animeData.data;
+	const { title, episodes, score, synopsis, images } = animeData;
 
 	const cleanedSynopsis = synopsis?.replace("[Written by MAL Rewrite]", "");
 
@@ -70,10 +70,10 @@ const AnimeSlideOver = ({ isOpen, onClose, animeId }: AnimeSlideOverProps) => {
 									</div>
 								</div>
 							</header>
-							<div className="space-x-4 p-4">
-								<div className="flex h-fit w-fit flex-row ">
+							<div className=" p-4">
+								<div className="flex h-fit w-fit flex-row space-x-4 ">
 									<img
-										className="mb-2 mr-4 flex-none rounded-sm shadow-lg"
+										className="mb-2 flex-none rounded-sm shadow-lg"
 										src={images?.jpg.large_image_url}
 										alt={title}
 									/>

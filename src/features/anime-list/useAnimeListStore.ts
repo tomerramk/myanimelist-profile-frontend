@@ -1,88 +1,7 @@
 import { create } from "zustand";
 
 import type AnimeCard from "@entities/AnimeCard";
-
-type AnimeDataProps = {
-	data: {
-		mal_id: number;
-		url: string;
-		images: {
-			jpg: {
-				image_url: string;
-				small_image_url: string;
-				large_image_url: string;
-			};
-			webp: {
-				image_url: string;
-				small_image_url: string;
-				large_image_url: string;
-			};
-		};
-		approved: boolean;
-		titles: AnimeTitle[];
-		title: string;
-		title_english: string;
-		title_japanese: string;
-		title_synonyms: string[];
-		type: string;
-		source: string;
-		episodes: number;
-		status: string;
-		airing: boolean;
-		aired: {
-			from: string;
-			to: string;
-			prop: {
-				from: AnimeDate;
-				to: AnimeDate;
-			};
-			string: string;
-		};
-		duration: string;
-		rating: string;
-		score: number;
-		scored_by: number;
-		rank: number;
-		popularity: number;
-		members: number;
-		favorites: number;
-		synopsis: string;
-		background: string;
-		season: string;
-		year: number;
-		broadcast: {
-			day: string;
-			time: string;
-			timezone: string;
-			string: string;
-		};
-		producers: AnimeEntity[];
-		licensors: AnimeEntity[];
-		studios: AnimeEntity[];
-		genres: AnimeEntity[];
-		explicit_genres: AnimeEntity[];
-		themes: AnimeEntity[];
-		demographics: AnimeEntity[];
-	};
-};
-
-type AnimeTitle = {
-	type: string;
-	title: string;
-};
-
-type AnimeDate = {
-	day: number;
-	month: number;
-	year: number;
-};
-
-type AnimeEntity = {
-	mal_id: number;
-	type: string;
-	name: string;
-	url: string;
-};
+import type AnimeData from "@entities/AnimeData";
 
 type StatusDetails = {
 	[key: string]: {
@@ -98,9 +17,9 @@ interface AnimeListStoreProps {
 
 	setAnimeList: (animeList: AnimeCard[]) => void;
 
-	animeData: AnimeDataProps;
+	animeData: AnimeData;
 
-	setAnimeData: (animeData: AnimeDataProps) => void;
+	setAnimeData: (animeData: AnimeData) => void;
 
 	animeTab: string;
 
@@ -122,9 +41,7 @@ const useAnimeListStore = create<AnimeListStoreProps>((set, get) => ({
 
 	setAnimeList: (list) => set({ animeList: list }),
 
-	animeData: <AnimeDataProps>{
-		data: {},
-	},
+	animeData: <AnimeData>{},
 
 	setAnimeData: (anime) => set({ animeData: anime }),
 
