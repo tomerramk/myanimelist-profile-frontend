@@ -27,6 +27,7 @@
 			"@entities/*": ["src/entities/*"],
 			"@features/*": ["src/features/*"],
 			"@hooks/*": ["src/hooks/*"],
+			"@pages/*": ["src/pages/*"]
 		}
 	},
 	"include": ["src"],

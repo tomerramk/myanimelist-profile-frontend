@@ -7,6 +7,7 @@ import AnimeTabs from "@components/AnimeList/AnimeTabs";
 import useAnimeListStore from "./useAnimeListStore";
 
 import useAnimeList from "@hooks/useAnimeList";
+import Sidebar from "@components/Sidebar/Sidebar";
 
 const UserAnimeList: React.FC = () => {
 	const { animeTab, setAnimeList } = useAnimeListStore();
@@ -22,23 +23,26 @@ const UserAnimeList: React.FC = () => {
 	}, [data, setAnimeList]);
 
 	return (
-		<div className="flex h-full flex-col">
-			<div className="col-span-full mt-4">
-				<AnimeTabs selectedStatus={animeTab}></AnimeTabs>
+		<>
+			<Sidebar />
+			<div className="flex h-full w-full flex-col">
+				<div className="col-span-full mt-4">
+					<AnimeTabs selectedStatus={animeTab}></AnimeTabs>
+				</div>
+				<InfiniteScroll
+					dataLength={fetchedAnimeCount}
+					next={() => fetchNextPage()}
+					hasMore={!!hasNextPage}
+					loader={
+						isFetchingNextPage ? (
+							<h4 className="text-center text-lg font-bold ">Loading...</h4>
+						) : null
+					}
+				>
+					<AnimeList />
+				</InfiniteScroll>
 			</div>
-			<InfiniteScroll
-				dataLength={fetchedAnimeCount}
-				next={() => fetchNextPage()}
-				hasMore={!!hasNextPage}
-				loader={
-					isFetchingNextPage ? (
-						<h4 className="text-center text-lg font-bold ">Loading...</h4>
-					) : null
-				}
-			>
-				<AnimeList />
-			</InfiniteScroll>
-		</div>
+		</>
 	);
 };
 
