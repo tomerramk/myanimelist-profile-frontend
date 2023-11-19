@@ -26,7 +26,7 @@ const AnimePicturesGrid = ({
 				{animePictures?.slice(0, 4).map((picture, index) => (
 					<div key={index} className="relative">
 						<img
-							className="h-48 w-36 rounded-sm shadow-lg"
+							className="h-48 w-36 min-w-fit rounded-sm shadow-lg"
 							src={picture.jpg.image_url}
 							alt={`Anime Scene ${index + 1}`}
 							onClick={index === 3 ? handleLastImageClick : undefined}

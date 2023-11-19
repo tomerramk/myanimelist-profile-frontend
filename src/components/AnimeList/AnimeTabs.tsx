@@ -33,7 +33,7 @@ const AnimeTabs = ({ selectedStatus }: tabProps) => {
 				{tabs.map((tab) => (
 					<button
 						key={tab.key}
-						className={`font-mediumhover:bg-opacity-75 rounded px-3 py-2 text-sm ${
+						className={`rounded px-3 py-2 text-sm font-medium hover:bg-bkg ${
 							selectedStatus === tab.key
 								? `${statusDetails?.borderColorClass} border-b-4 bg-bkg`
 								: ""
