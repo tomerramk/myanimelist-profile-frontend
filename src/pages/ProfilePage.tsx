@@ -6,9 +6,9 @@ import MangaStats from "@components/Profile/Stats/MangaStats";
 import AnimeUpdates from "@components/Profile/Updates/AnimeUpdates";
 import MangaUpdates from "@components/Profile/Updates/MangaUpdates";
 
-import useProfileStore from "./useProfileStore";
+import useProfileStore from "@features/profile/useProfileStore";
 
-const Profile: React.FC = () => {
+const ProfilePage: React.FC = () => {
 	const { profileData } = useProfileStore();
 
 	return (
@@ -68,4 +68,4 @@ const Profile: React.FC = () => {
 	);
 };
 
-export default Profile;
+export default ProfilePage;

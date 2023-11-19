@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HomeIcon } from "@radix-ui/react-icons";
 
-import ThemeSelector from "./ThemeSelector";
+import ThemeSelector from "../../components/Header/ThemeSelector";
 
 import useHeaderStore from "./useheaderStore";
 

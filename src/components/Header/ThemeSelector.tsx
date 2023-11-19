@@ -56,24 +56,24 @@ const ThemeSelector: React.FC = () => {
 	};
 	return (
 		<DropdownMenu.Root>
-			<DropdownMenu.Trigger className="focus: hover:bg-content-50 flex cursor-pointer items-center justify-center rounded-md bg-bkg p-2.5 outline-none">
+			<DropdownMenu.Trigger className="focus: flex cursor-pointer items-center justify-center rounded-md bg-bkg p-2.5 outline-none hover:bg-content-50">
 				{getThemeIcon()}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content className="ml-2 mt-1 w-28 overflow-hidden rounded-lg bg-bkg p-1.5 shadow-lg outline-none">
 				<DropdownMenu.Item
-					className="hover:bg-content-50 cursor-pointer rounded-md p-2 outline-none"
+					className="cursor-pointer rounded-md p-2 outline-none hover:bg-content-50"
 					onSelect={() => handleChange("light")}
 				>
 					Light
 				</DropdownMenu.Item>
 				<DropdownMenu.Item
-					className="hover:bg-content-50 cursor-pointer rounded-md p-2 outline-none"
+					className="cursor-pointer rounded-md p-2 outline-none hover:bg-content-50"
 					onSelect={() => handleChange("dark")}
 				>
 					Dark
 				</DropdownMenu.Item>
 				<DropdownMenu.Item
-					className="hover:bg-content-50 cursor-pointer rounded-md p-2 outline-none"
+					className="cursor-pointer rounded-md p-2 outline-none hover:bg-content-50"
 					onSelect={() => handleChange("system")}
 				>
 					System

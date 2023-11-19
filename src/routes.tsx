@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Layout from "@pages/Layout";
 import HomePage from "@pages/HomePage";
-import Profile from "@features/profile/Profile";
-import UserAnimeList from "@features/anime-list/UserAnimeList";
+import ProfilePage from "@pages/ProfilePage";
+import AnimeListPage from "@pages/AnimeListPage";
 
 const router = createBrowserRouter([
 	{
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/profile",
-				element: <Profile />,
+				element: <ProfilePage />,
 			},
 			{
 				path: "/anime",
-				element: <UserAnimeList />,
+				element: <AnimeListPage />,
 			},
 		],
 	},

@@ -4,12 +4,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import AnimeList from "@components/AnimeList/AnimeList";
 import AnimeTabs from "@components/AnimeList/AnimeTabs";
 
-import useAnimeListStore from "./useAnimeListStore";
+import useAnimeListStore from "@features/anime-list/useAnimeListStore";
 
 import useAnimeList from "@hooks/useAnimeList";
 import Sidebar from "@components/Sidebar/Sidebar";
 
-const UserAnimeList: React.FC = () => {
+const AnimeListPage: React.FC = () => {
 	const { animeTab, setAnimeList } = useAnimeListStore();
 
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -46,4 +46,4 @@ const UserAnimeList: React.FC = () => {
 	);
 };
 
-export default UserAnimeList;
+export default AnimeListPage;
