@@ -15,6 +15,7 @@ const FilterAnime = ({ isOpen }: FilterAnimeProps) => {
 		const query = e.target.value;
 		setListFilter(query);
 	};
+
 	return (
 		<AnimatePresence>
 			{isOpen && (

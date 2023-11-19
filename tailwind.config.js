@@ -19,7 +19,7 @@ export default {
 			textColor: {
 				primary: "rgb(var(--color-txtcolor) / <alpha-value>)",
 			},
-
+			placeholderColor: (theme) => theme("textColor"),
 			screens: {
 				xs: "475px",
 				sm: "640px",

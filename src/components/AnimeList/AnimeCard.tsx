@@ -37,7 +37,7 @@ const AnimeCardComponent = ({ anime, onClick }: AnimeCardProps) => {
 			<div className="px-6 py-4">
 				<div className="mb-2 text-xl font-bold">{anime.title}</div>
 				<p className="text-base">
-					Status:
+					Status:{" "}
 					<span className={`${statusDetails?.textColorClass} font-semibold`}>
 						{statusDetails?.text}
 					</span>
