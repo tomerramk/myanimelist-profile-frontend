@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
+import useProfileStore from "@features/profile/useProfileStore";
+
 const useAnimeList = (status: string) => {
+	const { username } = useProfileStore();
+
 	return useInfiniteQuery({
 		queryKey: ["animeList", { status }],
 		queryFn: async ({ pageParam = 1 }) => {
-			const username = "tomeram";
 			const url = `http://localhost:8080/api/users/animelist/${username}?limit=25&page=${pageParam}${
 				status !== "all" ? `&status=${status}` : ""
 			}`;

@@ -6,9 +6,7 @@ import UserInfo from "./UserInfo";
 import useProfileStore from "@features/profile/useProfileStore";
 
 const Sidebar: React.FC = () => {
-	const { profileData, setProfileData } = useProfileStore();
-
-	const username = "tomeram";
+	const { username, profileData, setProfileData } = useProfileStore();
 
 	useEffect(() => {
 		axios

@@ -94,12 +94,20 @@ type fullProfile = {
 };
 
 interface HeaderProps {
+	username: string;
+
+	setUsername: (username: string) => void;
+
 	profileData: fullProfile;
 
 	setProfileData: (profileData: fullProfile) => void;
 }
 
 const useProfileStore = create<HeaderProps>((set) => ({
+	username: "",
+
+	setUsername: (name) => set({ username: name }),
+
 	profileData: {
 		mal_id: 0,
 		username: "",
