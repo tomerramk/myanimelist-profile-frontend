@@ -25,7 +25,7 @@ const Header: React.FC = () => {
 	}, [location, setActiveTab]);
 
 	return (
-		<div className="flex h-14 w-screen items-center justify-between bg-primary p-2">
+		<div className="flex h-12 w-screen items-center justify-between bg-primary p-2">
 			<div className="flex items-center">
 				<Link
 					to="/"
