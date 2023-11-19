@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import SearchInput from "@components/SearchInput";
+import { useNavigate } from "react-router-dom";
 import { SiMyanimelist } from "react-icons/si";
+import SearchInput from "@components/SearchInput";
 
 import useProfileStore from "@features/profile/useProfileStore";
 
 const HomePage: React.FC = () => {
 	const [searchValue, setSearchValue] = useState("");
-
+	const navigate = useNavigate();
 	const { setUsername } = useProfileStore();
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,6 +16,7 @@ const HomePage: React.FC = () => {
 
 	const handleEnterPress = () => {
 		setUsername(searchValue);
+		navigate("/profile");
 	};
 
 	return (

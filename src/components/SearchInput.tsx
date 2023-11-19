@@ -21,7 +21,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
 	};
 
 	return (
-		<div className="flex w-96 items-center rounded-3xl bg-content-100 p-3 text-primary">
+		<div className="flex w-1/3 items-center rounded-3xl bg-content-100 p-3 text-primary">
 			<MagnifyingGlassIcon height={25} width={25} className="mr-2" />
 
 			<input
