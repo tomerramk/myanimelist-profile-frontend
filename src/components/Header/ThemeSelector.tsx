@@ -16,14 +16,20 @@ const ThemeSelector: React.FC = () => {
 	const handleChange = (newTheme: string) => {
 		const root = document.documentElement;
 		root.setAttribute("data-theme", newTheme);
+		localStorage.setItem("data-theme", newTheme);
 		setCurrentTheme(newTheme);
 	};
 
 	useEffect(() => {
 		// Set theme based on system preference or saved setting
+		const localStorageTheme = localStorage.getItem("data-theme");
 		const root = document.documentElement;
 		const savedTheme = root.getAttribute("data-theme");
-		if (savedTheme) {
+
+		if (localStorageTheme) {
+			setCurrentTheme(localStorageTheme);
+			root.setAttribute("data-theme", localStorageTheme);
+		} else if (savedTheme) {
 			setCurrentTheme(savedTheme);
 		} else {
 			setThemeFromSystemPreference();
