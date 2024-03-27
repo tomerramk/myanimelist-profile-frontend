@@ -1,17 +1,16 @@
 import axios from "axios";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import useProfileStore from "@features/profile/useProfileStore";
 
-const useAnimeList = (status: string) => {
+const useAnimeList = (search: string) => {
 	const { username } = useProfileStore();
 
-	return useInfiniteQuery({
-		queryKey: ["animeList", { status }],
-		queryFn: async ({ pageParam = 1 }) => {
-			const url = `http://localhost:8080/api/users/animelist/${username}?limit=25&page=${pageParam}${
-				status !== "all" ? `&status=${status}` : ""
-			}`;
+	return useQuery({
+		queryKey: ["animeList", { search }],
+		queryFn: async () => {
+			if (!search) return [];
+			const url = `http://localhost:8080/api/users/animelist/all/${username}`;
 			try {
 				const { data } = await axios.get(url);
 				return data;
@@ -19,8 +18,6 @@ const useAnimeList = (status: string) => {
 				throw new Error("Failed to fetch anime list");
 			}
 		},
-		initialPageParam: 1,
-		getNextPageParam: (lastPage) => lastPage.nextPage,
 	});
 };
 

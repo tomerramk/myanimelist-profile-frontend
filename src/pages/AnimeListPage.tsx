@@ -6,14 +6,14 @@ import AnimeTabs from "@components/AnimeList/AnimeTabs";
 
 import useAnimeListStore from "@features/anime-list/useAnimeListStore";
 
-import useAnimeList from "@hooks/useAnimeList";
+import useAnimeListInfinite from "@hooks/useAnimeListInfinite";
 import Sidebar from "@components/Sidebar/Sidebar";
 
 const AnimeListPage: React.FC = () => {
 	const { animeTab, setAnimeList } = useAnimeListStore();
 
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-		useAnimeList(animeTab);
+		useAnimeListInfinite(animeTab);
 
 	const fetchedAnimeCount =
 		data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;

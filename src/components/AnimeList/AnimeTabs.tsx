@@ -5,7 +5,7 @@ import FilterAnime from "./FilterAnime";
 
 import useAnimeListStore from "@features/anime-list/useAnimeListStore";
 
-import useAnimeList from "@hooks/useAnimeList";
+import useAnimeListInfinite from "@hooks/useAnimeListInfinite";
 
 type tabProps = {
 	selectedStatus: string;
@@ -25,7 +25,7 @@ const AnimeTabs = ({ selectedStatus }: tabProps) => {
 		{ key: "plan_to_watch", label: "Plan to Watch" },
 	];
 
-	useAnimeList(animeTab);
+	useAnimeListInfinite(animeTab);
 
 	return (
 		<div className="ml-4 flex w-[calc(100%-2rem)] items-center justify-center rounded bg-content-50 p-2">
