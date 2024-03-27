@@ -41,8 +41,8 @@ const Header: React.FC = () => {
 					onClick={() => setActiveTab("profile")}
 					className={`w-60 rounded-lg p-[5px] text-center text-xl font-medium ${
 						activeTab === "profile"
-							? "bg-content-50 text-primary"
-							: "text-primary hover:text-opacity-80"
+							? "bg-content-50"
+							: "text-white hover:text-opacity-80"
 					}`}
 				>
 					Profile
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
 					className={`w-60 rounded-lg p-[5px] text-center text-xl font-medium ${
 						activeTab === "anime"
 							? "bg-content-50 text-primary"
-							: "text-primary hover:text-opacity-80"
+							: "text-white hover:text-opacity-80"
 					}`}
 				>
 					Anime List
