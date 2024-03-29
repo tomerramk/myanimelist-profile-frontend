@@ -1,15 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HomeIcon } from "@radix-ui/react-icons";
 
 import ThemeSelector from "../../components/Header/ThemeSelector";
 
 import useHeaderStore from "./useheaderStore";
+import { Button } from "@radix-ui/themes";
+import useProfileStore from "@features/profile/useProfileStore";
+import Alert from "@components/Alert";
 
 const Header: React.FC = () => {
 	const { activeTab, setActiveTab } = useHeaderStore();
+	const { username } = useProfileStore();
 
 	const location = useLocation();
+
+	const [showAlert, setShowAlert] = useState(false);
 
 	useEffect(() => {
 		switch (location.pathname) {
@@ -24,8 +30,18 @@ const Header: React.FC = () => {
 		}
 	}, [location, setActiveTab]);
 
+	const handleLinkClick = () => {
+		if (username === "") {
+			setShowAlert(true);
+			setTimeout(() => {
+				setShowAlert(false);
+			}, 3000);
+		}
+	};
+
 	return (
 		<div className="flex h-12 w-screen items-center justify-between bg-primary p-2">
+			<Alert trigger={showAlert} message={"Select a username first"}></Alert>
 			<div className="flex items-center">
 				<Link
 					to="/"
@@ -36,29 +52,39 @@ const Header: React.FC = () => {
 				<ThemeSelector />
 			</div>
 			<div className="flex items-center justify-center gap-6">
-				<Link
-					to="/profile"
-					onClick={() => setActiveTab("profile")}
-					className={`w-60 rounded-lg p-[5px] text-center text-xl font-medium ${
+				<Button
+					className={`h-9 rounded-lg text-center text-xl font-medium ${
 						activeTab === "profile"
-							? "bg-content-50"
-							: "text-white hover:text-opacity-80"
+							? "bg-content-50 text-primary"
+							: "bg-transparent text-white hover:text-opacity-80"
 					}`}
+					onClick={handleLinkClick}
 				>
-					Profile
-				</Link>
+					<Link
+						to={`${username ? "/profile" : ""}`}
+						onClick={() => setActiveTab("profile")}
+						className="w-60"
+					>
+						Profile
+					</Link>
+				</Button>
 				<span className="h-9 rounded-sm border-l-[3.5px] border-content-50"></span>
-				<Link
-					to="/anime"
-					onClick={() => setActiveTab("anime")}
-					className={`w-60 rounded-lg p-[5px] text-center text-xl font-medium ${
+				<Button
+					className={`h-9 rounded-lg p-[5px] text-center text-xl font-medium ${
 						activeTab === "anime"
 							? "bg-content-50 text-primary"
-							: "text-white hover:text-opacity-80"
+							: "bg-transparent text-white hover:text-opacity-80"
 					}`}
+					onClick={handleLinkClick}
 				>
-					Anime List
-				</Link>
+					<Link
+						to={`${username ? "/anime" : ""}`}
+						onClick={() => setActiveTab("anime")}
+						className="w-60"
+					>
+						Anime List
+					</Link>
+				</Button>
 			</div>
 			<div style={{ width: "fit-content" }}></div>
 		</div>

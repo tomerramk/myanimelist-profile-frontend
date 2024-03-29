@@ -36,13 +36,15 @@ const AnimeList = () => {
 	return (
 		<div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 5xl:grid-cols-9">
 			{animeList.map((anime: AnimeCard) => {
-				return (
-					<AnimeCardComponent
-						key={anime.id}
-						anime={anime}
-						onClick={() => handleCardClick(anime.id)}
-					></AnimeCardComponent>
-				);
+				if (anime.id) {
+					return (
+						<AnimeCardComponent
+							key={anime.id}
+							anime={anime}
+							onClick={() => handleCardClick(anime.id)}
+						></AnimeCardComponent>
+					);
+				}
 			})}
 			<AnimeSlideOver
 				isOpen={!!selectedAnime}
