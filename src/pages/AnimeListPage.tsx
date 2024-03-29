@@ -25,7 +25,7 @@ const AnimeListPage: React.FC = () => {
 	return (
 		<>
 			<Sidebar />
-			<div className="flex h-full w-full flex-col">
+			<div className="flex h-full w-full flex-col pr-3">
 				<div className="col-span-full mt-4">
 					<AnimeTabs selectedStatus={animeTab}></AnimeTabs>
 				</div>

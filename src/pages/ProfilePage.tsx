@@ -14,7 +14,7 @@ const ProfilePage: React.FC = () => {
 	return (
 		<>
 			<Sidebar />
-			<div className="h-full w-full overflow-y-auto align-middle">
+			<div className="h-full w-full overflow-y-auto pr-3 align-middle">
 				{profileData && (
 					<div>
 						<div>
