@@ -42,6 +42,13 @@ export default {
 					"0%": { opacity: "75" },
 					"100%": { opacity: "0" },
 				},
+				fadeInOut: {
+					"0%": { opacity: "0" },
+					"20%": { opacity: "80" },
+					"50%": { opacity: "100" },
+					"80%": { opacity: "80" },
+					"100%": { opacity: "0" },
+				},
 				slideInRight: {
 					"0%": { transform: "translateX(100%)" },
 					"100%": { transform: "translateX(0)" },
@@ -54,6 +61,7 @@ export default {
 			animation: {
 				fadeIn: "fadeIn 0.3s",
 				fadeOut: "fadeOut 0.3s",
+				fadeInOut: "fadeInOut 3s",
 				slideInRight: "slideInRight 0.3s ease-out",
 				slideOutRight: "slideOutRight 0.3s ease-out",
 			},

@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
 			<div className="z-10 flex w-full flex-col items-center pt-10 ">
 				<SiMyanimelist size={200} />
 				<SearchInput
-					placeholder="Search username from MyAnimeList.net"
+					placeholder="Search for a username from MyAnimeList.net"
 					value={searchValue}
 					onSearch={handleSearch}
 					onEnterPress={handleEnterPress}

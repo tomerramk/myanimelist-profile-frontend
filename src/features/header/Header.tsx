@@ -41,7 +41,11 @@ const Header: React.FC = () => {
 
 	return (
 		<div className="flex h-12 w-screen items-center justify-between bg-primary p-2">
-			<Alert trigger={showAlert} message={"Select a username first"}></Alert>
+			<Alert
+				trigger={showAlert}
+				message={"Please select a username first"}
+				type="warning"
+			></Alert>
 			<div className="flex items-center">
 				<Link
 					to="/"
@@ -56,7 +60,7 @@ const Header: React.FC = () => {
 					className={`h-9 rounded-lg text-center text-xl font-medium ${
 						activeTab === "profile"
 							? "bg-content-50 text-primary"
-							: "bg-transparent text-white hover:text-opacity-80"
+							: "bg-transparent text-white hover:bg-content-50 hover:text-primary"
 					}`}
 					onClick={handleLinkClick}
 				>
@@ -73,7 +77,7 @@ const Header: React.FC = () => {
 					className={`h-9 rounded-lg p-[5px] text-center text-xl font-medium ${
 						activeTab === "anime"
 							? "bg-content-50 text-primary"
-							: "bg-transparent text-white hover:text-opacity-80"
+							: "bg-transparent text-white hover:bg-content-50 hover:text-primary"
 					}`}
 					onClick={handleLinkClick}
 				>
