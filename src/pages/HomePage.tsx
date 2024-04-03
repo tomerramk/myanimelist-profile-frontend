@@ -5,6 +5,7 @@ import SearchInput from "@components/SearchInput";
 
 import useProfileStore from "@features/profile/useProfileStore";
 import AnimeData from "@entities/AnimeData";
+import axios from "axios";
 
 const HomePage: React.FC = () => {
 	const [searchValue, setSearchValue] = useState("");
@@ -13,26 +14,20 @@ const HomePage: React.FC = () => {
 	const [backgroundImages, setBackgroundImages] = useState<string[]>([]);
 
 	useEffect(() => {
-		const fetchAnimeData = async () => {
-			try {
-				let animeList: AnimeData[] = [];
-				const response = await fetch(`https://api.jikan.moe/v4/top/anime`);
-				const data = await response.json();
-				animeList = [...animeList, ...data.data];
-
+		let animeList: AnimeData[] = [];
+		axios
+			.get(`http://localhost:8080/api/anime/top/1`)
+			.then((response) => {
+				animeList = response.data.data;
 				const topAnime = animeList.slice(0, 24);
-
 				const imageUrls = topAnime.map(
 					(anime: AnimeData) => `url(${anime.images.jpg.image_url})`,
 				);
-
 				setBackgroundImages(imageUrls);
-			} catch (error) {
-				console.error("Error fetching top-rated anime:", error);
-			}
-		};
-
-		fetchAnimeData();
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}, []);
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
